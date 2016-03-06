@@ -9,7 +9,8 @@ module.exports = {
 	create(req, res, next) {
 		var config = {
 			x: +req.body.x,
-			y: +req.body.y
+			y: +req.body.y,
+			id: 1 // Application only supports a single grid, creating a new grid resets the whole game
 		}
 
 		if (!config.x || !config.y) {
@@ -19,15 +20,11 @@ module.exports = {
 
 		console.log('[pebbleship-server] Reqesting new grid: %s', JSON.stringify(config, null, 4));
 
-		// Application only supports a single grid at the moment, posting to this endpoint resets the whole game
-
-		// TODO: Create 'pebbleship' service to hold game logic!
-
-		Grid.destroy({}).then(() => {
-			return Grid.create(config).then(grid => {
+		Pebbleship.reset().then(() => {
+			Pebbleship.createGrid(config).then(grid => {
 				console.log('[pebbleship-server] Created new grid, ready to play!');
 				return res.send(grid).status(200);
 			})
-		});
+		})
 	}
 };
