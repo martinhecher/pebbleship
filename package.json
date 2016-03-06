@@ -27,7 +27,8 @@
   "scripts": {
     "debug": "node debug app.js",
     "dev": "nodemon --watch ./api -w ./config app.js --watch ./lib",
-    "start": "node app.js"
+    "start": "node app.js",
+    "create-docs": "apidoc -i ./api -o ./assets"
   },
   "main": "app.js",
   "repository": {
@@ -35,5 +36,11 @@
     "url": "git://github.com/martinhecher/pebbleship-server.git"
   },
   "author": "Martin Hecher <martin.hecher.g@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "apidoc": {
+    "name": "pebbleship-server",
+    "version": "0.1.0",
+    "title": "pebbleship-server",
+    "url": "http://localhost:1337"
+  }
 }

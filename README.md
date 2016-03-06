@@ -22,6 +22,14 @@ http://localhost:1337
 
 After the server is started the API documentation is available at ```http://localhost:1337```.
 
+To create the documentation from the source code you have to install ```apidoc``` first:
+
+```
+sudo npm install -g apidoc
+```
+
+Afterwards run ```npm run create-docs``` to generate the documentation in ```./assets```.
+
 ## Code structure
 
 The API endpoints are located at ```./api/controllers```. The gameplay logic is encapsulated in ```./lib/pebbleship```, which is injected as a service into the controllers in ```./api/services/Pebbleship.js```. The definition of the grid and ship models is stored in ```./api/models```. The rest of the files in this respository is boilerplate code from SailsJS.
