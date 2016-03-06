@@ -19,10 +19,14 @@ module.exports = {
 
 		console.log('[pebbleship-server] Reqesting new grid: %s', JSON.stringify(config, null, 4));
 
-		// Application only supports a single grid at the moment
+		// Application only supports a single grid at the moment, posting to this endpoint resets the whole game
+
+		// TODO: Create 'pebbleship' service to hold game logic!
+
 		Grid.destroy({}).then(() => {
-			Grid.create(config).then(grid => {
+			return Grid.create(config).then(grid => {
 				console.log('[pebbleship-server] Created new grid, ready to play!');
+				return res.send(grid).status(200);
 			})
 		});
 	}
