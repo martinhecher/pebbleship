@@ -31,6 +31,11 @@ module.exports = {
       dimension: req.body.dimension
     };
 
+    if (!Pebbleship.hasGrid()) {
+      console.log('[pebbleship-server] No grid defined yet, use POST /grid first!');
+      return res.send('No grid defined yet, use POST /grid first!').status(500);
+    }
+
     if (!config.dimension || config.dimension <= 0) {
       console.log('[pebbleship-server] Invalid /ships request: %s', JSON.stringify(config, null, 4));
       return res.send('Please specify the "dimension" of a ship, which has to be an integer < 0!').status(500);
@@ -39,13 +44,16 @@ module.exports = {
     Pebbleship.placeShip(config).then(ship => {
       res.send(ship).status(200);
     }).catch(err => {
-      console.log('[pebbleship-server] ShipsController: ' + err);
+      // NOTE: I'm handling it as an error when the grid is too full to place a ship (something one can discuss about...)
+      // To still get a backtrace for a 'real' syntax error the following block is used:
+      if (err.stack && process.env.NODE_ENV === 'development') {
+        console.log('[pebbleship-server] Stack: ' + err.stack);
+      }
 
       return res.send({
         errorText: err.message
       }).status(500);
-    })
-
+    });
   }
 
   /**
