@@ -37,14 +37,14 @@ module.exports = {
 
 		if (!cell || cell.length != 2) {
 			console.log('[pebbleship-server] Invalid /shot request for cell: %s', cell);
-      return res.send('Please specify the cell to shoot within the grid boundaries like so: "A5" (starting with "A1")').status(500);
+      return res.send('Please specify the cell to shoot within the grid boundaries like so: "A5" (starting with "A0")').status(500);
     }
 
 		var validationResult = Pebbleship.validateInput(cell);
 
 		if (!validationResult) {
 			console.log('[pebbleship-server] Invalid cell format or cell not in grid: %s', cell);
-      return res.send('Please specify the cell to shoot within the grid boundaries like so: "A5" (starting with "A1")').status(500);
+      return res.send('Please specify the cell to shoot within the grid boundaries like so: "A5" (starting with "A0")').status(500);
     }
 
 		var shotResult = Pebbleship.shoot(cell);
