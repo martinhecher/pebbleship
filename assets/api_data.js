@@ -1,12 +1,32 @@
 define({ "api": [
   {
+    "type": "get",
+    "url": "/grid/",
+    "title": "Get grid config",
+    "version": "0.1.0",
+    "name": "GetGrid",
+    "group": "Grid",
+    "description": "<p>Returns the current grid configuration.</p>",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "   HTTP/1.1 200 OK\n{\n  \"x\": 10,\n  \"y\": 10,\n  \"id\": 1,\n  \"createdAt\": \"2016-03-06T11:38:25.146Z\",\n  \"updatedAt\": \"2016-03-06T11:38:25.146Z\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "api/controllers/GridController.js",
+    "groupTitle": "Grid"
+  },
+  {
     "type": "post",
     "url": "/grid/",
-    "title": "Create grid",
+    "title": "Create new grid",
     "version": "0.1.0",
     "name": "PostGrid",
     "group": "Grid",
-    "description": "<p>Create a new grid (x,y). The game is reset internally.</p>",
+    "description": "<p>Create a new grid (x,y). The game is reset internally. The grid will always be created with ID 1.</p>",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -15,14 +35,14 @@ define({ "api": [
             "type": "Number",
             "optional": false,
             "field": "x",
-            "description": "<p>Number of columns</p>"
+            "description": "<p>Number of grid columns</p>"
           },
           {
             "group": "Parameter",
             "type": "Number",
             "optional": false,
             "field": "y",
-            "description": "<p>Number of rows</p>"
+            "description": "<p>Number of grid rows</p>"
           }
         ]
       }
@@ -38,5 +58,91 @@ define({ "api": [
     },
     "filename": "api/controllers/GridController.js",
     "groupTitle": "Grid"
+  },
+  {
+    "type": "get",
+    "url": "/ships/:id",
+    "title": "Get ship configs",
+    "version": "0.1.0",
+    "name": "GetShips",
+    "group": "Ships",
+    "description": "<p>Returns the current ship configurations.</p>",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "   HTTP/1.1 200 OK\n{\n  \"dimension\": 5,\n  \"id\": 1,\n  \"createdAt\": \"2016-03-06T11:38:25.146Z\",\n  \"updatedAt\": \"2016-03-06T11:38:25.146Z\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "api/controllers/ShipsController.js",
+    "groupTitle": "Ships"
+  },
+  {
+    "type": "post",
+    "url": "/ships/",
+    "title": "Create new ship",
+    "version": "0.1.0",
+    "name": "PostShips",
+    "group": "Ships",
+    "description": "<p>Places a ship with the given dimension on the grid. The placing algorithm is choosing the rotation of the ship on the grid and is not controllable by the user.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "dimension",
+            "description": "<p>Ship dimension.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "   HTTP/1.1 200 OK\n{\n  \"dimension\": 5,\n  \"createdAt\": \"2016-03-06T11:38:25.146Z\",\n  \"updatedAt\": \"2016-03-06T11:38:25.146Z\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "api/controllers/ShipsController.js",
+    "groupTitle": "Ships"
+  },
+  {
+    "type": "post",
+    "url": "/shots/",
+    "title": "Do a shot on the grid",
+    "version": "0.1.0",
+    "name": "PostShot",
+    "group": "Shot",
+    "description": "<p>Do a shot on the grid. This endpoint allows to replay a game for later versions.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "cell",
+            "description": "<p>The cell to shoot in the format 'A4'</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "   HTTP/1.1 200 OK\n{\n  \"cell\": \"A5\",\n  \"hit\": true,\n  \"destroyed\": false,\n  \"id\": 1,\n  \"createdAt\": \"2016-03-06T11:38:25.146Z\",\n  \"updatedAt\": \"2016-03-06T11:38:25.146Z\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "api/controllers/ShotsController.js",
+    "groupTitle": "Shot"
   }
 ] });
