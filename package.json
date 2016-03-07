@@ -1,5 +1,5 @@
 {
-  "name": "pebbleship-server",
+  "name": "pebbleship",
   "private": false,
   "version": "0.1.0",
   "description": "Server for the pebbleship application",
@@ -22,10 +22,8 @@
     "grunt-sync": "0.2.4",
     "include-all": "~0.1.6",
     "rc": "1.0.1",
-    "readline-sync": "^1.4.1",
     "sails": "~0.12.1",
-    "sails-disk": "~0.10.9",
-    "superline": "^1.0.2"
+    "sails-disk": "~0.10.9"
   },
   "scripts": {
     "debug": "node debug app.js",
@@ -36,7 +34,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/martinhecher/pebbleship-server.git"
+    "url": "git://github.com/martinhecher/pebbleship.git"
   },
   "author": "Martin Hecher <martin.hecher.g@gmail.com>",
   "license": "MIT",
