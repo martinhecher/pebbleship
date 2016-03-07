@@ -36,7 +36,9 @@ module.exports = {
 
     if (!config.x || !config.y || config.x <= 0 || config.y <= 0) {
       console.log('[pebbleship-server] Invalid /grid request: %s', JSON.stringify(config, null, 4));
-      return res.send('Please specify the rows and cols of the grid as "x" and "y" in the request (with values greater then 0)!').status(500);
+      return res.send({
+        error: 'Please specify the rows and cols of the grid as "x" and "y" in the request (with values greater then 0)!'
+      }).status(200);
     }
 
     console.log('[pebbleship-server] Reqesting new grid: %s', JSON.stringify(config, null, 4));
@@ -55,7 +57,7 @@ module.exports = {
     });
   }
 
-	/**
+  /**
    * @api {get} /grid/ Get grid config
    * @apiVersion 0.1.0
    * @apiName GetGrid

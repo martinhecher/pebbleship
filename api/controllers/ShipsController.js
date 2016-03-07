@@ -33,12 +33,16 @@ module.exports = {
 
     if (!Pebbleship.hasGrid()) {
       console.log('[pebbleship-server] No grid defined yet, use POST /grid first!');
-      return res.send('No grid defined yet, use POST /grid first!').status(500);
+      return res.send({
+        error: 'No grid defined yet, use POST /grid first!'
+      }).status(200);
     }
 
     if (!config.dimension || config.dimension <= 0) {
       console.log('[pebbleship-server] Invalid /ships request: %s', JSON.stringify(config, null, 4));
-      return res.send('Please specify the "dimension" of a ship, which has to be an integer < 0!').status(500);
+      return res.send({
+        error: 'Please specify the "dimension" of a ship, which has to be an integer < 0!'
+      }).status(200);
     }
 
     Pebbleship.placeShip(config).then(ship => {
