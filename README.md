@@ -1,4 +1,4 @@
-# pebbleship-server
+# pebbleship
 
 This [SailsJS](http://sailsjs.org) application controls the gameplay of the Battleship clone *pebbleship*. The gameplay is controlled via a REST API.
 
@@ -22,7 +22,7 @@ To play the game run
 node lib/pebbleship-cli
 ```
 
-The CLI connects to the server and provides you with a prompt where you can enter a cell (e.g., A5).
+The CLI connects to the server and provides you with a prompt where you can enter a cell (e.g., "A5").
 
 ## API Documentation
 
